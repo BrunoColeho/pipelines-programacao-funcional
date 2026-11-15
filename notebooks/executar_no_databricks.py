@@ -32,6 +32,9 @@ assert sys.version_info >= (3, 10), "o pipeline usa casamento de padrões (match
 
 # COMMAND ----------
 
+import sys
+sys.dont_write_bytecode = True
+
 import pytest
 
 codigo = pytest.main(["-q", "-p", "no:cacheprovider", str(RAIZ / "tests")])
