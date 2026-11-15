@@ -1,0 +1,12 @@
+[project]
+name = "pureza-pipelines"
+version = "0.1.0"
+description = "Experimento sobre pureza, idempotência e testabilidade em pipelines de dados"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
