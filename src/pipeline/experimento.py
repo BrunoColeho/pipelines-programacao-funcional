@@ -145,27 +145,25 @@ def executar(cfg: Configuracao, cenario: str, semente: int) -> Resultado:
         return Resultado(cfg.rotulo, cenario, semente, confere(destino, lote), razao)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--sementes", type=int, default=30)
-    parser.add_argument("--saida", type=Path, default=Path("resultados"))
-    args = parser.parse_args()
-    args.saida.mkdir(parents=True, exist_ok=True)
+def rodar(sementes: int = 30, saida: Path = Path("resultados")) -> int:
+    """Executa a QP1 completa, grava os CSVs em `saida` e devolve o número de células divergentes."""
+    saida = Path(saida)
+    saida.mkdir(parents=True, exist_ok=True)
 
     resultados = [
         executar(cfg, cenario, semente)
         for cfg in todas_configuracoes()
         for cenario in CENARIOS
-        for semente in range(args.sementes)
+        for semente in range(sementes)
     ]
 
-    with (args.saida / "qp1_bruto.csv").open("w", newline="", encoding="utf-8") as f:
+    with (saida / "qp1_bruto.csv").open("w", newline="", encoding="utf-8") as f:
         escritor = csv.writer(f)
         escritor.writerow(["configuracao", "cenario", "semente", "correto", "razao_receita"])
         for r in resultados:
             escritor.writerow([r.configuracao, r.cenario, r.semente, int(r.correto), f"{r.razao_receita:.4f}"])
 
-    with (args.saida / "qp1_resumo.csv").open("w", newline="", encoding="utf-8") as f:
+    with (saida / "qp1_resumo.csv").open("w", newline="", encoding="utf-8") as f:
         escritor = csv.writer(f)
         escritor.writerow(["configuracao", "cenario", "proporcao_correta", "previsto_passar", "confere_previsao"])
         divergencias = 0
@@ -179,6 +177,15 @@ def main() -> None:
                 escritor.writerow([cfg.rotulo, cenario, f"{proporcao:.2f}", int(previsto), int(confere_previsao)])
 
     print(f"{len(resultados)} execuções; {divergencias} célula(s) divergente(s) da previsão.")
+    return divergencias
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--sementes", type=int, default=30)
+    parser.add_argument("--saida", type=Path, default=Path("resultados"))
+    args = parser.parse_args()
+    rodar(args.sementes, args.saida)
 
 
 if __name__ == "__main__":

@@ -14,8 +14,14 @@ src/pipeline/
   casca.py         relógio, origem, destino e ponto de entrada do job
   relogio.py       relógio simulado
   verificacao.py   oráculo: compara o destino com o gabarito
+  experimento.py   cenários C0 a C5 da QP1 e geração dos resultados
 tests/
   test_fumaca.py   verificações do pipeline e do oráculo antes do experimento
+  test_cenarios.py verificações dos cenários
+notebooks/
+  executar_no_databricks.py   alternativa para executar tudo no Databricks
+resultados/        saídas da QP1 (CSV)
+artigo/            fontes LaTeX do artigo (template CBSoft) e gerador do .docx
 ```
 
 ## Como Executar
@@ -35,6 +41,18 @@ Os resultados são gravados em `resultados/`:
 - `qp1_resumo.csv`: proporção de acertos por configuração e cenário, com a previsão da Seção 8 da especificação.
 
 A coluna `razao_receita` é uma medida exploratória, não pré-registrada.
+
+### No Databricks
+
+Publique o repositório, crie uma *Git folder* no Databricks com a URL dele e execute o notebook `notebooks/executar_no_databricks.py`. Ele roda os testes, o experimento e confere se o resumo gerado é idêntico ao do repositório.
+
+### Artigo
+
+```bash
+cd artigo
+latexmk -pdf artigo.tex      # PDF no template do CBSoft
+python3 gerar_docx.py        # versão .docx (requer pandoc)
+```
 
 ## Histórico do Experimento
 

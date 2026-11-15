@@ -1,0 +1,60 @@
+\documentclass[sigconf]{acmart}
+
+%% CBSoft: formato ACM-like sem bloco de referência ACM nem nota de copyright.
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\setcopyright{none}
+
+%% CONFIRMAR com o professor o cabeçalho a usar na entrega.
+\acmConference[SE4FP 2026]{2nd Workshop on Software Engineering for Functional Programming}{September 8, 2026}{São Paulo, SP, Brazil}
+
+\AtBeginDocument{\providecommand\BibTeX{{Bib\TeX}}}
+
+\usepackage[brazilian]{babel}
+\usepackage{array}
+\usepackage{listings}
+\lstset{
+  language=Python, basicstyle=\ttfamily\footnotesize, columns=fullflexible,
+  keepspaces=true, frame=tb, aboveskip=4pt, belowskip=4pt,
+  literate={ú}{{\'u}}1 {í}{{\'i}}1 {ã}{{\~a}}1 {ç}{{\c c}}1 {é}{{\'e}}1
+}
+\renewcommand{\lstlistingname}{Listagem}
+
+%% Artigos em português (template CBSoft).
+\renewcommand\abstractname{Resumo}
+\renewcommand\keywordsname{Palavras-chave}
+\renewcommand\refname{Referências}
+
+\newcommand{\ok}{$\checkmark$}
+\newcommand{\falha}{$\times$}
+
+\begin{document}
+
+\title{Pureza Não Basta: Quais Práticas Tornam um Pipeline de Dados Seguro para Reexecução}
+
+\author{Bruno Cesar Coelho da Silva}
+\affiliation{
+  \institution{[PROGRAMA DE PÓS-GRADUAÇÃO, UNIVERSIDADE]}
+  \city{[Cidade]}
+  \country{Brasil}
+}
+\email{[email@instituicao.br]}
+
+\renewcommand{\shortauthors}{Silva}
+\renewcommand{\shorttitle}{Pureza Não Basta}
+
+\begin{abstract}
+\input{resumo}
+\end{abstract}
+
+\keywords{Programação Funcional, Pipelines de Dados, Idempotência, Engenharia de Dados, Experimento Controlado}
+
+\frenchspacing
+\maketitle
+
+\input{corpo}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{referencias}
+
+\end{document}
