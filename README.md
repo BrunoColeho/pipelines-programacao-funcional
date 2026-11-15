@@ -25,8 +25,20 @@ Requer Python 3.10 ou superior.
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-pytest
+pytest                                   # testes de fumaça e dos cenários
+python -m pipeline.experimento           # QP1: 16 configurações x 6 cenários x 30 sementes (~1 min)
 ```
+
+Os resultados são gravados em `resultados/`:
+
+- `qp1_bruto.csv`: uma linha por execução (configuração, cenário, semente, acerto e razão de receita);
+- `qp1_resumo.csv`: proporção de acertos por configuração e cenário, com a previsão da Seção 8 da especificação.
+
+A coluna `razao_receita` é uma medida exploratória, não pré-registrada.
+
+## Histórico do Experimento
+
+A tag `especificacao-v1.0` marca o commit em que a especificação foi registrada, antes de qualquer medição. Os resultados foram gerados em commits posteriores.
 
 ## Licença
 
