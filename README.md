@@ -54,10 +54,6 @@ latexmk -pdf artigo.tex      # PDF no template do CBSoft
 python3 gerar_docx.py        # versão .docx (requer pandoc)
 ```
 
-## Histórico do Experimento
-
-A tag `especificacao-v1.0` marca o commit em que a especificação foi registrada, antes de qualquer medição. Os resultados foram gerados em commits posteriores.
-
 ## Licença
 
-A definir.
+C.C 4.0.
