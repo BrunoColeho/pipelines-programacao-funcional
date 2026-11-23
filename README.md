@@ -46,14 +46,6 @@ A coluna `razao_receita` é uma medida exploratória, não pré-registrada.
 
 Publique o repositório, crie uma *Git folder* no Databricks com a URL dele e execute o notebook `notebooks/executar_no_databricks.py`. Ele roda os testes, o experimento e confere se o resumo gerado é idêntico ao do repositório.
 
-### Artigo
-
-```bash
-cd artigo
-latexmk -pdf artigo.tex      # PDF no template do CBSoft
-python3 gerar_docx.py        # versão .docx (requer pandoc)
-```
-
 ## Licença
 
 C.C 4.0.
